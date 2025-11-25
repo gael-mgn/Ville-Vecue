@@ -57,7 +57,12 @@ function toggleNav() {
     <div class="container">
     <h2 class="wiggle">Une <span>Ville</span>, Mille <span>Vécus...</span></h2>
     
-<style>.wiggle span {
+<style>
+
+.wiggle {
+    font-size: 2.4rem;
+}
+    .wiggle span {
   display: inline-block;
   animation: updown 1s ease-in-out infinite alternate;
 }
@@ -67,7 +72,7 @@ function toggleNav() {
     transform: translateY(0);
   }
   to {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
   }
 }
 
@@ -86,21 +91,311 @@ function toggleNav() {
     <div class="container">
     <h2>Notre mission</h2>
     <p>Composée d’étudiant·e·s en urbanisme, sciences humaines, génie et santé, l’association mêle réflexion, témoignages et actions concrètes pour repenser la ville afin qu’elle soit praticable par toutes et tous. Nous nous intéressons à toutes les formes d’inclusion/exclusion : genre, âge, mobilité, déficiences sensorielles, et usages sociaux des espaces.</p>
-    <br>
 
+    <section id="chiffres-assoc" class="chiffres-images-section" aria-labelledby="chiffres-title">
+  <div class="container22">
+
+    <h2 style="">L'association en quelques chiffres...</h2>
+
+    <p>Dans le cadre de l'action « <a href="actions.html">En Sortant de l'École</a> » c'est pas moins de...</p>
+<br>
+
+    <div class="stats-grid">
+
+      <!-- Étudiants accompagnés -->
+      <article class="stat-card" data-appear role="group" aria-labelledby="label-etudiants">
+        <div class="img-wrap" aria-hidden="true">
+          <img src="images/icon1.png" alt="Icône : étudiants">
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="0" aria-live="polite" aria-atomic="true">0</div>
+          <div id="label-etudiants" class="stat-label">Étudiants accompagnés</div>
+          <p class="stat-desc">Participants aux parcours « En sortant de l’école ».</p>
+        </div>
+      </article>
+
+      <!-- Distance parcourue -->
+      <article class="stat-card" data-appear role="group" aria-labelledby="label-distance">
+        <div class="img-wrap" aria-hidden="true">
+          <img src="images/icon2.png" alt="Icône : distance">
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="0" aria-live="polite" aria-atomic="true">0</div>
+          <div id="label-distance" class="stat-label">Distance parcourue (km)</div>
+          <p class="stat-desc">Kilomètres cumulés lors des trajets observés.</p>
+        </div>
+      </article>
+
+      <!-- Obstacles identifiés -->
+      <article class="stat-card" data-appear role="group" aria-labelledby="label-obstacles">
+        <div class="img-wrap" aria-hidden="true">
+          <img src="images/icon3.png" alt="Icône : obstacles">
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" data-target="0" aria-live="polite" aria-atomic="true">0</div>
+          <div id="label-obstacles" class="stat-label">Obstacles identifiés</div>
+          <p class="stat-desc">Trottoirs, marches, signalisation, ruptures de cheminement…</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+</section>
+
+<style>
+  :root {
+    --muted: #6b7280;
+    --accent: #2a9d8f;
+    --bg-card: #ffffff;
+    --shadow: rgba(0,0,0,0.06);
+    --shadow-hover: rgba(0,0,0,0.08);
+    --max-width: 1100px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  /* SECTION */
+  .chiffres-images-section {
+
+  }
+
+
+
+  .chiffres-header h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    margin: 0 0 6px 0;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: clamp(16px, 3vw, 28px);
+    font-size: clamp(0.95rem, 1.6vw, 1rem);
+  }
+
+  /* GRID */
+  .stats-grid {
+    display: grid;
+    gap: clamp(12px, 1.6vw, 20px);
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+
+  /* CARD */
+  .stat-card {
+    background: var(--bg-card);
+    border-radius: 14px;
+    padding: clamp(12px, 2vw, 20px);
+    box-shadow: 0 10px 28px var(--shadow);
+    display: flex;
+    gap: clamp(10px, 2vw, 16px);
+    align-items: center;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    min-height: 110px;
+  }
+
+  .stat-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px var(--shadow-hover);
+  }
+
+  /* IMAGE WRAP */
+  .img-wrap {
+    width: clamp(64px, 10vw, 90px);
+    min-width: clamp(64px, 10vw, 90px);
+    height: clamp(64px, 10vw, 90px);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    flex-shrink: 0;
+
+    transform: translateZ(0);       /* active l’accélération GPU */
+  }
+
+  .stat-card.visible .img-wrap {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* CONTENT */
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .stat-number {
+    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+    font-weight: 700;
+    color: #072a25;
+    line-height: 1;
+  }
+
+  .stat-label {
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 2px;
+    font-size: clamp(0.9rem, 1.6vw, 1rem);
+  }
+
+  .stat-desc {
+    margin-top: 6px;
+    color: #556;
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+  }
+
+  /* RESPONSIVE BREAKPOINTS */
+  /* Medium screens: 2 columns */
+  @media (max-width: 1000px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Small screens: 1 column + stack card content vertically */
+  @media (max-width: 640px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: clamp(14px, 4vw, 18px);
+      min-height: auto;
+    }
+
+    .img-wrap {
+      width: clamp(64px, 18vw, 96px);
+      height: clamp(64px, 18vw, 96px);
+      margin-bottom: 10px;
+    }
+
+    .stat-content {
+      align-items: center;
+    }
+
+    .stat-desc {
+      max-width: 90%;
+    }
+  }
+
+  /* Accessibility: reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+
+  }
+</style>
+<script>
+  // Count-up + apparition
+  (function () {
+    const cards = document.querySelectorAll("[data-appear]");
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          card.classList.add("visible");
+
+          const numberNode = card.querySelector(".stat-number");
+          const target = Number(numberNode.dataset.target) || 0;
+
+          animateCount(numberNode, target);
+          obs.unobserve(card);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: "0px 0px -8% 0px" });
+
+    cards.forEach(c => observer.observe(c));
+
+    function animateCount(el, target) {
+      let start = 0;
+      let startTime = null;
+      const duration = 1400; // tu peux mettre 1800 pour encore plus smooth
+
+      // Ease-out quint (encore plus fluide que cubic)
+      const easeOutQuint = t => 1 - Math.pow(1 - t, 5);
+
+      function frame(t) {
+        if (!startTime) startTime = t;
+        const progress = Math.min((t - startTime) / duration, 1);
+
+        const eased = easeOutQuint(progress);
+        const value = Math.round(eased * target);
+
+        el.textContent = value.toLocaleString();
+
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          el.textContent = target.toLocaleString();
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+  })();
+</script>
+
+
+
+     </div>
+  </section>
+
+
+
+<style>
+      #evenements2 {
+background: linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('images/map.png') center/cover no-repeat;
+  }
+
+  #evenements2 h2 {
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+  color: white;
+  }
+
+</style>
+
+
+  <section id="evenements2">
+    <div class="container">
     <h2>À la Une</h2>
+
 
 <a href="ville-a-franchir.html" target="_blank" class="article-link">
     <div class="article-card">
-        <img src="images/map.png" alt="Image de l'article" class="article-image">
+        <img src="images/ville-a-franchir.png" alt="Image de l'article" class="article-image">
 
         <div class="article-content">
             <h3 class="article-title">Cartographie des entraves à la mobilité</h3>
             <p class="article-description">
                 Découvrez l'ampleur de nos actions à l'aide de notre carte interactive ! <br>
-                Vous y retrouverez notamment tous les obstacles à la mobilité rencontrés lors de nos ateliers de sensibilisation.
-            </p>
-
+                Vous y retrouverez notamment tous les obstacles à la mobilité rencontrés lors de nos ateliers de sensibilisation.</p>
             <div class="arrow-wrapper">
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M5 12h14M13 5l7 7-7 7" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -145,7 +440,7 @@ function toggleNav() {
 }
 
 .article-image {
-    width: 40%;
+    width: 30%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
@@ -180,43 +475,50 @@ function toggleNav() {
 </style>
 
 
-    <br>
+  </div>
+  </section>
 
-<!--
+
+
+
+  <section id="apropos">
+    <div class="container">
     <h2>Derniers articles</h2>
         <div class="articles-container">
             <a href="article.html" class="card">
-                <img src="images/belleville.webp" alt="Article 1">
+                <!--<img src="images/article.webp" alt="Article 1">-->
                 <div class="card-content">
-                    <h4>Inclusivité et espace public</h4>
-                    <p>Description de l'article.</p>
-                    <span class="date">Publié le 10 Octobre 2025</span>
+                    <h4>Vieillir en ville : rester autonome dans un espace qui ne l’est pas toujours</h4>
+                    <p>Vieillir en ville : rester autonome dans un espace qui ne l’est pas toujours</p>
+                    <span class="date">Publié le .. 2025</span>
                 </div>
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
 
              <a href="article.html" class="card">
-                <img src="images/2.webp" alt="Article 2">
+                <!--<img src="images/article.webp" alt="Article 3">-->
                 <div class="card-content">
-                    <h4>Titre de l'article</h4>
-                    <p>Description de l'article.</p>
-                    <span class="date">Publié le 2 Octobre 2025</span>
+                    <h4>Genre et espace public : la ville du jour n’est pas la ville de la nuit</h4>
+                    <p>Genre et espace public : la ville du jour n’est pas la ville de la nuit</p>
+                    <span class="date">Publié le .. 2025</span>
                 </div>
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
 
-             <a href="article.html" class="card">
-                <img src="images/urbanivore.webp" alt="Article 3">
+            <a href="about.html" class="card">
+                <!--<img src="images/article.webp" alt="Article 2">-->
                 <div class="card-content">
-                    <h4>Végétalisation et handicap : Des enjeux contradictoires ?</h4>
-                    <p>Description de l'article</p>
-                    <span class="date">Publié le 20 Septembre 2025</span>
+                    <h4>À propos de l'association Ville Vécue</h4>
+                    <p>Ville vécue est une association née d’un constat simple : nous ne vivons pas tous et toutes la ville de la même manière. [...]</p>
+                    <span class="date">Publié le 25 Novembre 2025</span>
                 </div>
                 <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-        </div>-->
+        </div>
+        <br>
      </div>
   </section>
+
 
 
   <section id="evenements">
@@ -228,7 +530,7 @@ function toggleNav() {
                     <p>« En sortant de l’école » est un atelier immersif qui invite les étudiant·e·s en urbanisme, génie civil et ingénierie à vivre l’espace public autrement. En refaisant leur trajet école–domicile en fauteuil roulant, ils découvrent concrètement les obstacles invisibles du quotidien. L’objectif : <strong>comprendre la réalité de l’accessibilité pour concevoir des villes réellement inclusives.</strong></p>
                 </div>
 
-    </a>
+    </a><!--
             <br>
             <a class="card" href="actions.html#articles">
                 <div class="card-content">
@@ -236,7 +538,7 @@ function toggleNav() {
                     <p>Au-delà de nos actions de terrain, nous partageons régulièrement des articles, interviews et tribunes autour de la place de chacun·e dans l’espace public. Nous y explorons les enjeux de genre, d’accessibilité, de mobilité.<br>
 Découvrez nos réflexions, témoignages et regards croisés et plongez au cœur des mille vécus qui composent la ville.</p>
                 </div>
-            </a>
+            </a>-->
 
   </div>
   </section>
