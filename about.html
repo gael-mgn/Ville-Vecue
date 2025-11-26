@@ -17,29 +17,23 @@
 <body>
 
 <header>
-  <a class="brand" href="index.html">Ville Vécue</a>
-  <button class="menu-btn" onclick="toggleNav()">☰</button>
-  <nav id="nav">
-    <a href="#">À propos</a>
-    <a href="actions.html">Nos actions</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <div class="header-container">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Ville Vécue" class="logo">
+    </a>
 
-<script>
-function toggleNav() {
-  const nav = document.getElementById("nav");
-  nav.style.display = nav.style.display === "flex" ? "none" : "flex";
-  nav.style.flexDirection = "column";
-  nav.style.background = "var(--bg)";
-  nav.style.position = "absolute";
-  nav.style.top = "70px";
-  nav.style.right = "0";
-  nav.style.padding = "1rem";
-  nav.style.borderLeft = "1px solid rgba(0,0,0,0.08)";
-  nav.style.borderBottom = "1px solid rgba(0,0,0,0.08)";
-}
-</script>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav">
+      <a href="#">À propos</a>
+      <a href="actions.html">Nos actions</a>
+      <a href="#join.html">Nous rejoindre</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
 <main>
   <section id="home">

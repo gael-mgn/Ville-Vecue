@@ -26,31 +26,26 @@
 
 </head>
 <body>
-
 <header>
-  <a class="brand" href="#">Ville Vécue</a>
-  <button class="menu-btn" onclick="toggleNav()">☰</button>
-  <nav id="nav">
-    <a href="about.html">À propos</a>
-    <a href="actions.html">Nos actions</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="header-container">
+    <a class="brand" href="#">
+      <img src="logo.png" alt="Ville Vécue" class="logo">
+    </a>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav">
+      <a href="about.html">À propos</a>
+      <a href="actions.html">Nos actions</a>
+      <a href="#join.html">Nous rejoindre</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<script>
-function toggleNav() {
-  const nav = document.getElementById("nav");
-  nav.style.display = nav.style.display === "flex" ? "none" : "flex";
-  nav.style.flexDirection = "column";
-  nav.style.background = "var(--bg)";
-  nav.style.position = "absolute";
-  nav.style.top = "70px";
-  nav.style.right = "0";
-  nav.style.padding = "1rem";
-  nav.style.borderLeft = "1px solid rgba(0,0,0,0.08)";
-  nav.style.borderBottom = "1px solid rgba(0,0,0,0.08)";
-}
-</script>
+
 
 <main>
   <section id="home">
@@ -482,6 +477,8 @@ function toggleNav() {
     transform: translateY(-4px);
 }
 
+
+
 /* Style de l'icône */
 .action-card-icon {
   width: 50px;
@@ -508,9 +505,10 @@ function toggleNav() {
 }
 .separator {
   display: none;
-  width: 100%;
+  width: 60%;
   height: 1px;
-  background: #ddd;
+  opacity: 1;
+  background: var(--accent2);
 }
 /* Contenu textuel */
 .action-card-content {
